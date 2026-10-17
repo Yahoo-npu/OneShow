@@ -6,7 +6,11 @@
 
 把写好的 Markdown，变成值得分享的内容。
 
-<kbd>macOS 14+</kbd> · <kbd>SwiftUI</kbd> · <kbd>Markdown</kbd> · <kbd>v0.11.0</kbd>
+**[⬇️ 下载 macOS 安装包 · v1.0.0](https://github.com/Yahoo-npu/OneShow/releases/download/v1.0.0/OneShow-1.0.0-arm64.zip)**
+
+<sub>Apple Silicon（M 系列芯片）· macOS 14+</sub>
+
+<kbd>macOS 14+</kbd> · <kbd>SwiftUI</kbd> · <kbd>Markdown</kbd> · <kbd>v1.0.0</kbd>
 
 [界面预览](#screenshots) · [功能亮点](#features) · [快速上手](#quickstart) · [本地构建](#build)
 
