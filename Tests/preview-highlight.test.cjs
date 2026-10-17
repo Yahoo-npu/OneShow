@@ -1,0 +1,13 @@
+const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
+const spans = [];
+const code = {className:'language-python',textContent:'def hello():\n    return "<img src=x>" + 42', ownerDocument:{createTextNode:text=>({text}),createElement:()=>({style:{},textContent:''})}, replaceChildren(){spans.length=0},append(node){spans.push(node)}};
+const paper = {replaceChildren(){},querySelectorAll(selector){return selector==='pre > code'?[code]:[]}};
+const ctx = vm.createContext({document:{getElementById(){return paper}}});
+for(const name of ['highlight','preview']) vm.runInContext(fs.readFileSync(__dirname+'/../Resources/'+name+'.js','utf8'),ctx);
+ctx.sanitizedMarkdown=()=>({body:{childNodes:[]}});
+ctx.updatePreview('fixture');
+assert.equal(spans.map(n=>n.text??n.textContent).join(''),code.textContent);
+assert(spans.some(n=>n.style?.color==='#d6a2ff'));
+assert(spans.some(n=>n.style?.color==='#a7dbad'));
+code.className='language-unknown';ctx.updatePreview('fixture');assert(!spans.some(n=>n.style));
+console.log('通过：本地预览接入共享高亮、深色 token 配色、原文保真及未知语言降级。');

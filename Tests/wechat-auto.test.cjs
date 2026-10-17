@@ -1,0 +1,15 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const context=vm.createContext({URL,URLSearchParams});vm.runInContext(fs.readFileSync(__dirname+'/../Resources/wechat-editor.js','utf8'),context);
+let clicked=0;
+const body={}; const dialog={textContent:'内容结构检测：表格宽度',parentElement:body};
+const button={textContent:'继续插入',parentElement:dialog,getBoundingClientRect:()=>({width:10,height:10}),click:()=>clicked++};
+context.document={body,querySelectorAll:()=>[button]};
+assert.equal(context.oneShowWechatConfirmFormat(),true);assert.equal(clicked,1);
+dialog.textContent='确认发表';assert.equal(context.oneShowWechatConfirmFormat(),false);assert.equal(clicked,1);
+dialog.textContent='内容结构检测';button.textContent='发表';assert.equal(context.oneShowWechatConfirmFormat(),false);
+context.oneShowWechatState=()=>({found:false});context.location={hostname:'mp.weixin.qq.com',href:'https://mp.weixin.qq.com/',origin:'https://mp.weixin.qq.com',assign:()=>assert.fail('must wait for login')};
+assert.equal(context.oneShowWechatOpenEditor(),'login');
+context.location.hostname='example.org';assert.equal(context.oneShowWechatOpenEditor(),'waiting');
+context.location.hostname='mp.weixin.qq.com';context.location.href='https://mp.weixin.qq.com/cgi-bin/home?token=test-only';context.document.querySelectorAll=()=>[];
+let target;context.location.assign=url=>target=new URL(url);assert.equal(context.oneShowWechatOpenEditor(),'opening');assert.equal(target.hostname,'mp.weixin.qq.com');assert.equal(target.searchParams.get('action'),'edit');assert(!target.searchParams.has('appmsgid'));
+console.log('通过：仅确认粘贴格式提示、不触碰发表确认、等待登录、官方域名限制、新建编辑器跳转。');
