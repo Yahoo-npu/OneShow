@@ -12,13 +12,36 @@
 
 <kbd>macOS 14+</kbd> · <kbd>SwiftUI</kbd> · <kbd>Markdown</kbd> · <kbd>v1.0.0</kbd>
 
-[界面预览](#screenshots) · [功能亮点](#features) · [快速上手](#quickstart) · [本地构建](#build)
+[下载安装](#installation) · [界面预览](#screenshots) · [功能亮点](#features) · [快速上手](#quickstart) · [本地构建](#build)
 
 </div>
 
 ---
 
 在 Typora 专注写作，在 OneShow 预览、整理与分享。一个轻盈的 Mac 工作台，连接 **CSDN、微信公众号与小红书**。
+
+<a id="installation"></a>
+
+## 📥 下载安装与首次启动
+
+1. 下载上方的 **macOS 安装包** `OneShow-1.0.0-arm64.zip`，适用于 Apple Silicon（M 系列芯片）Mac，系统需为 macOS 14 或更高版本。
+2. 解压 ZIP，将 **一休·OneShow.app** 拖入“应用程序”文件夹。如果已安装旧版本，请先退出旧版再替换。
+3. 在“应用程序”中双击打开 OneShow。
+
+### 🔐 出现“Apple 无法验证”提示怎么办？
+
+当前 v1.0.0 使用本地临时签名，**尚未经过 Apple Developer ID 签名和公证**，从 GitHub 下载后可能触发 macOS 安全验证提示。这个提示本身不代表系统已检测到病毒，也不等于应用已经通过安全检查。
+
+如果确认安装包来自 [OneShow 官方仓库的 Releases](https://github.com/Yahoo-npu/OneShow/releases)，并信任该应用，可按以下步骤手动允许打开：
+
+1. 在拦截弹窗中点击 **“完成”**。
+2. 打开 **系统设置 → 隐私与安全性**。
+3. 向下找到“一休·OneShow 被阻止打开”的提示，点击 **“仍要打开”**。
+4. 按提示验证身份，再确认打开应用。
+
+如果暂未显示“仍要打开”，请先尝试打开一次应用，再返回“隐私与安全性”查看。详细说明见 [Apple 官方指南：在 Mac 上安全地打开 App](https://support.apple.com/zh-cn/102445)。
+
+> 💡 后续正式分发若完成 Developer ID 签名和 Apple 公证，会在发布说明中注明。当前版本仍需按上述方式处理首次启动提示。
 
 <a id="screenshots"></a>
 
